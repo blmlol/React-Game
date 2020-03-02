@@ -4,7 +4,9 @@ import Image from "./Image"
 class ImageContainer extends Component {
 
     state = {
-        imageArray: images
+        imageArray: images,
+        isClicked: [],
+        score: 0
     };
 
     shuffle = arr => {
