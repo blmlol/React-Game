@@ -28,18 +28,25 @@ class ImageContainer extends Component {
     shuffled = (e) => {
         e.preventDefault();
         const btnId = e.target.attributes[1].value;
-        console.log(btnId);
-        this.shuffle(images);
-        console.log('shuffled');
+
+        this.setState({isClicked: [btnId, ...this.state.isClicked]});
+        if(this.state.isClicked.includes(btnId)){
+            alert('You lost')
+            this.setState({score: 0})
+            this.setState( {imageArray: images})
+            this.setState({isClicked: []})
+        } else {
+
+            console.log(this.state.isClicked);
+            console.log(btnId);
+            this.shuffle([...images]);
+            console.log('shuffled');
+            this.setState({score: this.state.score + 1})
+        }
     }
 
-    //this.setState({this.state.arr1: [...this.state.arr1, pushedItem]})
-    // ^^^ This is how we would handle the 'isClicked' array    
 
-
-    //Array of image names maybe saved in state and then updated with map
-
-
+   
 
     render() {
         return (
@@ -47,6 +54,9 @@ class ImageContainer extends Component {
 
                 <div className='row text-center'>
                     <h1> Unique Foodie Clicky</h1>
+                </div>
+                <div>
+                    <h3>Score: {this.state.score}</h3>
                 </div>
                 <div className='row'>
 
